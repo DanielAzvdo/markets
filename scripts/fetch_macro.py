@@ -9,6 +9,7 @@ Requires env var FRED_API_KEY (repo secret). Run by
 """
 import json
 import os
+import time
 import urllib.request
 from datetime import datetime, timezone
 
@@ -16,13 +17,24 @@ API_KEY = os.environ.get("FRED_API_KEY")
 BASE_URL = "https://api.stlouisfed.org/fred/series/observations"
 
 
-def fetch_series(series_id, limit=13):
+def fetch_series(series_id, limit=13, retries=3):
+    """FRED occasionally times out or hiccups on an individual request —
+    retry a couple of times with backoff before giving up on this series."""
     params = f"series_id={series_id}&api_key={API_KEY}&file_type=json&sort_order=desc&limit={limit}"
-    with urllib.request.urlopen(f"{BASE_URL}?{params}", timeout=15) as resp:
-        payload = json.load(resp)
-    obs = [o for o in payload["observations"] if o["value"] != "."]
-    obs.sort(key=lambda o: o["date"], reverse=True)
-    return obs
+    url = f"{BASE_URL}?{params}"
+    last_exc = None
+    for attempt in range(retries):
+        try:
+            with urllib.request.urlopen(url, timeout=20) as resp:
+                payload = json.load(resp)
+            obs = [o for o in payload["observations"] if o["value"] != "."]
+            obs.sort(key=lambda o: o["date"], reverse=True)
+            return obs
+        except Exception as exc:
+            last_exc = exc
+            if attempt < retries - 1:
+                time.sleep(1.5 * (attempt + 1))
+    raise last_exc
 
 
 def latest_value(series_id):
@@ -82,12 +94,14 @@ def main():
             out[key] = {"value": value, "date": date}
         except Exception as exc:
             out[key] = {"error": str(exc)}
+        time.sleep(0.3)  # spread requests out — avoid bursting FRED's rate limit
 
     for key, series_id in INDEX_SERIES.items():
         try:
             out[key] = index_mom_yoy(series_id)
         except Exception as exc:
             out[key] = {"error": str(exc)}
+        time.sleep(0.3)
 
     os.makedirs("data", exist_ok=True)
     with open("data/macro.json", "w", encoding="utf-8") as f:

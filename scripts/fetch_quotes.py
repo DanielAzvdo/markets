@@ -7,6 +7,7 @@ Run by .github/workflows/update-quotes.yml on a schedule.
 """
 import json
 import os
+import time
 import urllib.request
 import urllib.parse
 from datetime import datetime, timezone
@@ -55,11 +56,25 @@ BASE_URL = "https://query1.finance.yahoo.com/v8/finance/chart/{}"
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; amb-markets-bot/1.0)"}
 
 
-def fetch_symbol(symbol):
+def fetch_symbol(symbol, retries=3):
+    """Yahoo occasionally times out or hiccups on an individual request —
+    retry a couple of times with backoff before giving up on this symbol."""
     url = BASE_URL.format(urllib.parse.quote(symbol, safe=""))
     req = urllib.request.Request(url + "?interval=1d&range=2d", headers=HEADERS)
-    with urllib.request.urlopen(req, timeout=15) as resp:
-        payload = json.load(resp)
+    last_exc = None
+    payload = None
+    for attempt in range(retries):
+        try:
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                payload = json.load(resp)
+            break
+        except Exception as exc:
+            last_exc = exc
+            if attempt < retries - 1:
+                time.sleep(1.5 * (attempt + 1))
+    if payload is None:
+        raise last_exc
+
     result = payload.get("chart", {}).get("result")
     if not result:
         raise ValueError(f"no data for {symbol}: {payload.get('chart', {}).get('error')}")
@@ -87,6 +102,7 @@ def main():
                 items.append({"symbol": symbol, "label": label, **data})
             except Exception as exc:  # keep going; one bad symbol shouldn't kill the whole board
                 items.append({"symbol": symbol, "label": label, "error": str(exc)})
+            time.sleep(0.2)  # spread requests out — avoid bursting Yahoo's rate limit
         categories_out.append({"name": cat_name, "items": items})
 
     out = {
