@@ -32,13 +32,28 @@ def latest_value(series_id):
 
 def index_mom_yoy(series_id):
     """For an index-level series (e.g. CPI), return latest value plus
-    month-over-month and year-over-year % change computed from raw levels."""
-    obs = fetch_series(series_id, limit=13)
-    values = [float(o["value"]) for o in obs]  # index 0 = most recent
-    latest = values[0]
-    mom = (latest - values[1]) / values[1] * 100 if len(values) > 1 else None
-    yoy = (latest - values[12]) / values[12] * 100 if len(values) > 12 else None
-    return {"level": latest, "mom_pct": mom, "yoy_pct": yoy, "date": obs[0]["date"]}
+    month-over-month and year-over-year % change computed from raw levels.
+
+    Matches by calendar date instead of raw list index — robust to whatever
+    number of rows FRED actually returns, as long as it covers 12 months back
+    (monthly series like CPI go back decades, so a generous buffer is cheap).
+    """
+    obs = fetch_series(series_id, limit=24)
+    if not obs:
+        return {"level": None, "mom_pct": None, "yoy_pct": None, "date": None}
+
+    by_date = {o["date"]: float(o["value"]) for o in obs}
+    latest_date = obs[0]["date"]
+    latest = by_date[latest_date]
+
+    prev_date = obs[1]["date"] if len(obs) > 1 else None
+    mom = (latest - by_date[prev_date]) / by_date[prev_date] * 100 if prev_date else None
+
+    year, month, day = latest_date.split("-")
+    yoy_date = f"{int(year) - 1}-{month}-{day}"
+    yoy = (latest - by_date[yoy_date]) / by_date[yoy_date] * 100 if yoy_date in by_date else None
+
+    return {"level": latest, "mom_pct": mom, "yoy_pct": yoy, "date": latest_date}
 
 
 def main():
