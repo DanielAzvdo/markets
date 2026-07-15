@@ -1,29 +1,28 @@
 {
-  "generated_at": "2026-07-15T18:06:50Z",
+  "generated_at": "2026-07-15T18:10:39Z",
   "fed_funds": {
     "error": "HTTP Error 504: Gateway Time-out"
   },
   "unemployment": {
-    "value": 4.2,
-    "date": "2026-06-01"
-  },
-  "us10y": {
-    "value": 4.62,
-    "date": "2026-07-13"
-  },
-  "us2y": {
-    "error": "HTTP Error 502: Bad Gateway"
-  },
-  "cpi": {
     "error": "HTTP Error 504: Gateway Time-out"
   },
-  "core_cpi": {
+  "us10y": {
     "error": "The read operation timed out"
   },
+  "us2y": {
+    "value": 4.26,
+    "date": "2026-07-13"
+  },
+  "cpi": {
+    "error": "The read operation timed out"
+  },
+  "core_cpi": {
+    "level": 336.065,
+    "mom_pct": -0.016660666843185394,
+    "yoy_pct": 2.565785056369746,
+    "date": "2026-06-01"
+  },
   "pce": {
-    "level": 131.527,
-    "mom_pct": 0.44983121782828417,
-    "yoy_pct": 4.072638075644874,
-    "date": "2026-05-01"
+    "error": "The read operation timed out"
   }
 }
