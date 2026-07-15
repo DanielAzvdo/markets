@@ -117,7 +117,12 @@ def _previous_close_from_bars(chart_result, meta):
 
     if last_bar_date == today_date and len(bars) > 1:
         return bars[-2][1]
-    return bars[-1][1]
+    if last_bar_date != today_date:
+        return bars[-1][1]
+    # Only one bar and it's today's — no real previous close in this series
+    # (seen for thinly-tracked symbols like IFIX.SA). Let the caller fall
+    # back to meta.chartPreviousClose instead of faking a flat 0% change.
+    return None
 
 
 def main():
