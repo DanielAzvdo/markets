@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-07-15T22:00:47Z",
+  "generated_at": "2026-07-15T22:05:21Z",
   "fed_funds": {
-    "value": 3.63,
-    "date": "2026-07-14"
+    "error": "HTTP Error 504: Gateway Time-out"
   },
   "unemployment": {
-    "error": "The read operation timed out"
+    "value": 4.2,
+    "date": "2026-06-01"
   },
   "us10y": {
     "value": 4.58,
@@ -22,7 +22,10 @@
     "date": "2026-06-01"
   },
   "core_cpi": {
-    "error": "The read operation timed out"
+    "level": 336.065,
+    "mom_pct": -0.016660666843185394,
+    "yoy_pct": 2.565785056369746,
+    "date": "2026-06-01"
   },
   "pce": {
     "level": 131.527,
