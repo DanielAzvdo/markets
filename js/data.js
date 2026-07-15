@@ -68,6 +68,30 @@ function last(arr) {
   return arr[arr.length - 1];
 }
 
+// --- US macro (FRED, fetched server-side by scripts/fetch_macro.py) ---------
+
+async function refreshUsMacro() {
+  const ids = ["statFedFunds", "statCpiMom", "statCpiYoy", "statCoreCpiMom", "statCoreCpiYoy"];
+  try {
+    const res = await fetch(`data/macro.json?t=${Math.floor(Date.now() / 120000)}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    setStat("statFedFunds", data.fed_funds?.value != null ? `${data.fed_funds.value.toFixed(2)}%` : "indisp.");
+
+    const cpi = data.cpi || {};
+    setStat("statCpiMom", cpi.mom_pct != null ? `${cpi.mom_pct.toFixed(2)}%` : "indisp.");
+    setStat("statCpiYoy", cpi.yoy_pct != null ? `${cpi.yoy_pct.toFixed(2)}%` : "indisp.");
+
+    const coreCpi = data.core_cpi || {};
+    setStat("statCoreCpiMom", coreCpi.mom_pct != null ? `${coreCpi.mom_pct.toFixed(2)}%` : "indisp.");
+    setStat("statCoreCpiYoy", coreCpi.yoy_pct != null ? `${coreCpi.yoy_pct.toFixed(2)}%` : "indisp.");
+  } catch (err) {
+    console.error("Falha ao buscar dados macro (FRED):", err);
+    ids.forEach(id => setStat(id, "indisp."));
+  }
+}
+
 // --- News ------------------------------------------------------------
 
 const RSS2JSON = "https://api.rss2json.com/v1/api.json?rss_url=";

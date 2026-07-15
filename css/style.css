@@ -93,6 +93,16 @@ html, body {
   color: var(--accent);
   border-bottom: 1px solid var(--border);
   padding-bottom: 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.heading-meta {
+  font-size: 11px;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
 }
 
 .panel-body {
@@ -109,22 +119,11 @@ html, body {
   min-height: 320px;
 }
 
-.chart-slot { min-height: 300px; display: flex; flex-direction: column; }
-
-.slot-caption {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-dim);
-  margin-bottom: 6px;
-}
-
-.chart-slot-inner {
-  flex: 1;
+#chartIbov {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .futures-category {
@@ -142,16 +141,18 @@ html, body {
 
 .futures-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
-  gap: 6px;
+  grid-template-columns: repeat(auto-fill, minmax(126px, 1fr));
+  gap: 8px;
 }
 
 .fbox {
   border-radius: 4px;
-  padding: 6px 8px;
+  padding: 9px 12px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
+  min-height: 94px;
+  justify-content: center;
   background: var(--bg-tile);
   border: 1px solid var(--border);
 }
@@ -167,14 +168,14 @@ html, body {
 }
 
 .fbox-price {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: bold;
   color: var(--text);
 }
 .fbox-price.fbox-na { color: var(--text-dim); font-weight: normal; font-size: 13px; }
 
 .fbox-change {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: bold;
 }
 .fbox.up .fbox-change { color: var(--green); }
@@ -185,11 +186,10 @@ html, body {
   color: var(--text-dim);
 }
 
-.stat-tiles {
+.stat-tiles-wide {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  align-content: start;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
 }
 
 .stat-tile {

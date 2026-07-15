@@ -5,14 +5,18 @@
 // committing the result — the page just reads it same-origin, no proxy needed.
 
 const QUOTES_URL = "data/quotes.json";
+const REFRESH_CYCLE_SEC = 600; // matches the */10 cron in .github/workflows/update-quotes.yml
 
 const CATEGORY_LABELS = {
   Indices: "Índices",
   Energia: "Energia",
   Metais: "Metais",
   Graos: "Grãos",
+  Softs: "Softs",
   Moedas: "Moedas"
 };
+
+let lastGeneratedAtMs = null;
 
 function formatPrice(item) {
   if (item.price == null) return "—";
@@ -71,13 +75,28 @@ async function refreshFuturesBoard() {
       </div>
     `).join("");
 
-    const caption = document.querySelector(".slot-caption");
-    if (caption && data.generated_at) {
-      const updated = new Date(data.generated_at);
-      caption.textContent = `Futuros Globais · atualizado ${updated.toLocaleTimeString("pt-BR", { hour12: false })}`;
+    if (data.generated_at) {
+      lastGeneratedAtMs = new Date(data.generated_at).getTime();
+      updateFuturesMeta();
     }
   } catch (err) {
     console.error("Falha ao carregar board de futuros:", err);
     container.innerHTML = `<div class="news-error">Não foi possível carregar as cotações agora.</div>`;
   }
+}
+
+function updateFuturesMeta() {
+  const meta = document.getElementById("futuresMeta");
+  if (!meta || lastGeneratedAtMs == null) return;
+
+  const updated = new Date(lastGeneratedAtMs);
+  const elapsedSec = (Date.now() - lastGeneratedAtMs) / 1000;
+  const remainingSec = Math.max(0, Math.round(REFRESH_CYCLE_SEC - elapsedSec));
+
+  const updatedText = updated.toLocaleTimeString("pt-BR", { hour12: false });
+  const countdownText = remainingSec > 0
+    ? `próxima em ${Math.floor(remainingSec / 60)}:${String(remainingSec % 60).padStart(2, "0")}`
+    : "atualizando…";
+
+  meta.textContent = `atualizado ${updatedText} · ${countdownText}`;
 }

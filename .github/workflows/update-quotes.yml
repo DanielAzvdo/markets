@@ -21,14 +21,21 @@ jobs:
       - name: Fetch quotes
         run: python3 scripts/fetch_quotes.py
 
+      - name: Fetch US macro (FRED)
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python3 scripts/fetch_macro.py
+        continue-on-error: true
+
       - name: Commit and push if changed
         run: |
           git config user.name "amb-markets-bot"
           git config user.email "actions@github.com"
-          if ! git diff --quiet -- data/quotes.json; then
-            git add data/quotes.json
-            git commit -m "chore: update futures quotes [skip ci]"
+          git add data/quotes.json
+          [ -f data/macro.json ] && git add data/macro.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update quotes and macro data [skip ci]"
             git push
           else
-            echo "No changes to quotes.json"
+            echo "No changes to commit"
           fi

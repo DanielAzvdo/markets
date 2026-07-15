@@ -17,28 +17,34 @@ CATEGORIES = [
         ("^DJI", "Dow Jones"),
         ("^IXIC", "Nasdaq"),
         ("^BVSP", "Ibovespa"),
+        ("IFIX.SA", "IFIX"),
         ("^VIX", "VIX"),
     ]),
     ("Energia", [
-        ("CL=F", "WTI"),
-        ("BZ=F", "Brent"),
-        ("NG=F", "Gas Natural"),
+        ("CL=F", "WTI | Petróleo"),
+        ("BZ=F", "Brent | Petróleo"),
+        ("NG=F", "Nat Gas | Gás Natural"),
     ]),
     ("Metais", [
-        ("GC=F", "Ouro"),
-        ("SI=F", "Prata"),
-        ("HG=F", "Cobre"),
+        ("GC=F", "Gold | Ouro"),
+        ("SI=F", "Silver | Prata"),
+        ("HG=F", "Copper | Cobre"),
     ]),
     ("Graos", [
-        ("ZC=F", "Milho"),
-        ("ZW=F", "Trigo"),
-        ("ZS=F", "Soja"),
+        ("ZC=F", "Corn | Milho"),
+        ("ZW=F", "Wheat | Trigo"),
+        ("ZS=F", "Soybean | Soja"),
+    ]),
+    ("Softs", [
+        ("KC=F", "Coffee | Café"),
     ]),
     ("Moedas", [
         ("DX-Y.NYB", "DXY"),
         ("EURUSD=X", "EUR/USD"),
+        ("GBP=X", "USD/GBP"),
         ("JPY=X", "USD/JPY"),
         ("BRL=X", "USD/BRL"),
+        ("BTC-USD", "Bitcoin | BTC/USD"),
     ]),
 ]
 
