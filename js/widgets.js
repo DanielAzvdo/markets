@@ -137,16 +137,23 @@ function setupSubtabs() {
   });
 }
 
+// Official Investing.com Economic Calendar widget (webmaster tools program —
+// sslecal2.investing.com is their own widget-serving domain, not scraping).
+// Kept in the same table format/columns as br.investing.com/economic-calendar.
 function mountEconCalendar() {
-  mountTVWidget("econCalendar", "https://s3.tradingview.com/external-embedding/embed-widget-events.js", {
-    colorTheme: "dark",
-    isTransparent: true,
-    width: "100%",
-    height: "100%",
-    locale: "br",
-    importanceFilter: "-1,0,1",
-    countryFilter: "us,br"
+  const container = document.getElementById("econCalendar");
+  if (!container) return;
+  const params = new URLSearchParams({
+    columns: "exc_flag,exc_currency,exc_importance,exc_actual,exc_forecast,exc_previous",
+    features: "datepicker,timezone",
+    countries: "25,32,6,37,72,22,17,39,14,10,35,43,56,36,110,11,26,12,4,5",
+    calType: "week",
+    timeZone: "12", // GMT-3 (Brasília)
+    lang: "12"      // Portuguese
   });
+  container.innerHTML = `<iframe src="https://sslecal2.investing.com/?${params.toString()}"
+    width="100%" height="100%" frameborder="0" style="min-height:500px;border:0;"
+    title="Calendário Econômico — Investing.com"></iframe>`;
 }
 
 function mountTVNews() {
