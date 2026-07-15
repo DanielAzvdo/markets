@@ -2,8 +2,12 @@ name: Update futures quotes
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch: {}
+# Note: GitHub's native `schedule` trigger is "best effort" and can be
+# delayed by hours on free-tier public repos. An external cron-ping service
+# (e.g. cron-job.org) calling the workflow_dispatch REST endpoint every 5 min
+# is what actually keeps this reliable — see README/chat history for setup.
 
 permissions:
   contents: write

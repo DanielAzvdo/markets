@@ -1,11 +1,11 @@
 // Custom Finviz-style quote board. Real numbers (price, day range, % change),
 // no TradingView widget involved. Data comes from data/quotes.json, which
-// .github/workflows/update-quotes.yml refreshes every ~10 min by calling Yahoo
+// .github/workflows/update-quotes.yml refreshes every ~5 min by calling Yahoo
 // Finance server-side (GitHub Actions has no browser CORS restriction) and
 // committing the result — the page just reads it same-origin, no proxy needed.
 
 const QUOTES_URL = "data/quotes.json";
-const REFRESH_CYCLE_SEC = 600; // matches the */10 cron in .github/workflows/update-quotes.yml
+const REFRESH_CYCLE_SEC = 300; // matches the */5 cron + external cron-ping trigger
 
 const CATEGORY_LABELS = {
   Indices: "Índices",
@@ -94,9 +94,15 @@ function updateFuturesMeta() {
   const remainingSec = Math.max(0, Math.round(REFRESH_CYCLE_SEC - elapsedSec));
 
   const updatedText = updated.toLocaleTimeString("pt-BR", { hour12: false });
-  const countdownText = remainingSec > 0
-    ? `próxima em ${Math.floor(remainingSec / 60)}:${String(remainingSec % 60).padStart(2, "0")}`
-    : "atualizando…";
+  const overdueSec = -remainingSec; // how far past the expected refresh we are, if any
+  let countdownText;
+  if (remainingSec > 0) {
+    countdownText = `próxima em ${Math.floor(remainingSec / 60)}:${String(remainingSec % 60).padStart(2, "0")}`;
+  } else if (overdueSec < 60) {
+    countdownText = "atualizando…";
+  } else {
+    countdownText = `atraso de ${Math.floor(overdueSec / 60)} min`;
+  }
 
   meta.textContent = `atualizado ${updatedText} · ${countdownText}`;
 }
