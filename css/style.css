@@ -119,7 +119,71 @@ html, body {
   margin-bottom: 6px;
 }
 
-.chart-slot-inner { flex: 1; }
+.chart-slot-inner {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.futures-category {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.futures-cat-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+}
+
+.futures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 6px;
+}
+
+.fbox {
+  border-radius: 4px;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--bg-tile);
+  border: 1px solid var(--border);
+}
+
+.fbox.up { background: rgba(46, 204, 113, 0.18); border-color: rgba(46, 204, 113, 0.4); }
+.fbox.down { background: rgba(255, 77, 77, 0.18); border-color: rgba(255, 77, 77, 0.4); }
+
+.fbox-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+}
+
+.fbox-price {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--text);
+}
+.fbox-price.fbox-na { color: var(--text-dim); font-weight: normal; font-size: 13px; }
+
+.fbox-change {
+  font-size: 12px;
+  font-weight: bold;
+}
+.fbox.up .fbox-change { color: var(--green); }
+.fbox.down .fbox-change { color: var(--red); }
+
+.fbox-range {
+  font-size: 9px;
+  color: var(--text-dim);
+}
 
 .stat-tiles {
   display: grid;

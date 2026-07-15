@@ -1,0 +1,94 @@
+#!/usr/bin/env python3
+"""Fetch real futures/index/fx quotes from Yahoo Finance's public chart endpoint
+(server-side, so no browser CORS restriction applies) and write them to
+data/quotes.json for the static site to read same-origin.
+
+Run by .github/workflows/update-quotes.yml on a schedule.
+"""
+import json
+import os
+import urllib.request
+import urllib.parse
+from datetime import datetime, timezone
+
+CATEGORIES = [
+    ("Indices", [
+        ("^GSPC", "S&P 500"),
+        ("^DJI", "Dow Jones"),
+        ("^IXIC", "Nasdaq"),
+        ("^BVSP", "Ibovespa"),
+        ("^VIX", "VIX"),
+    ]),
+    ("Energia", [
+        ("CL=F", "WTI"),
+        ("BZ=F", "Brent"),
+        ("NG=F", "Gas Natural"),
+    ]),
+    ("Metais", [
+        ("GC=F", "Ouro"),
+        ("SI=F", "Prata"),
+        ("HG=F", "Cobre"),
+    ]),
+    ("Graos", [
+        ("ZC=F", "Milho"),
+        ("ZW=F", "Trigo"),
+        ("ZS=F", "Soja"),
+    ]),
+    ("Moedas", [
+        ("DX-Y.NYB", "DXY"),
+        ("EURUSD=X", "EUR/USD"),
+        ("JPY=X", "USD/JPY"),
+        ("BRL=X", "USD/BRL"),
+    ]),
+]
+
+BASE_URL = "https://query1.finance.yahoo.com/v8/finance/chart/{}"
+HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; amb-markets-bot/1.0)"}
+
+
+def fetch_symbol(symbol):
+    url = BASE_URL.format(urllib.parse.quote(symbol, safe=""))
+    req = urllib.request.Request(url + "?interval=1d&range=2d", headers=HEADERS)
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        payload = json.load(resp)
+    result = payload.get("chart", {}).get("result")
+    if not result:
+        raise ValueError(f"no data for {symbol}: {payload.get('chart', {}).get('error')}")
+    meta = result[0]["meta"]
+    price = meta.get("regularMarketPrice")
+    prev_close = meta.get("chartPreviousClose") or meta.get("previousClose")
+    change_pct = None
+    if price is not None and prev_close:
+        change_pct = (price - prev_close) / prev_close * 100
+    return {
+        "price": price,
+        "change_pct": change_pct,
+        "high": meta.get("regularMarketDayHigh"),
+        "low": meta.get("regularMarketDayLow"),
+    }
+
+
+def main():
+    categories_out = []
+    for cat_name, symbols in CATEGORIES:
+        items = []
+        for symbol, label in symbols:
+            try:
+                data = fetch_symbol(symbol)
+                items.append({"symbol": symbol, "label": label, **data})
+            except Exception as exc:  # keep going; one bad symbol shouldn't kill the whole board
+                items.append({"symbol": symbol, "label": label, "error": str(exc)})
+        categories_out.append({"name": cat_name, "items": items})
+
+    out = {
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "categories": categories_out,
+    }
+
+    os.makedirs("data", exist_ok=True)
+    with open("data/quotes.json", "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, indent=2)
+
+
+if __name__ == "__main__":
+    main()

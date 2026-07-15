@@ -1,0 +1,174 @@
+{
+  "generated_at": "2026-07-15T15:20:08Z",
+  "categories": [
+    {
+      "name": "Indices",
+      "items": [
+        {
+          "symbol": "^GSPC",
+          "label": "S&P 500",
+          "price": 7557.2,
+          "change_pct": 0.5569940947448775,
+          "high": 7581.5,
+          "low": 7548.07
+        },
+        {
+          "symbol": "^DJI",
+          "label": "Dow Jones",
+          "price": 52687.45,
+          "change_pct": 0.35964741181866366,
+          "high": 52823.95,
+          "low": 52501.55
+        },
+        {
+          "symbol": "^IXIC",
+          "label": "Nasdaq",
+          "price": 26174.645,
+          "change_pct": 1.165164081106382,
+          "high": 26316.814,
+          "low": 26127.94
+        },
+        {
+          "symbol": "^BVSP",
+          "label": "Ibovespa",
+          "price": 176188.88,
+          "change_pct": 0.2559932627362194,
+          "high": 176662.6,
+          "low": 175637.94
+        },
+        {
+          "symbol": "^VIX",
+          "label": "VIX",
+          "price": 16.23,
+          "change_pct": -1.6363636363636338,
+          "high": 16.47,
+          "low": 15.88
+        }
+      ]
+    },
+    {
+      "name": "Energia",
+      "items": [
+        {
+          "symbol": "CL=F",
+          "label": "WTI",
+          "price": 78.74,
+          "change_pct": -0.7562389715150095,
+          "high": 80.93,
+          "low": 78.56
+        },
+        {
+          "symbol": "BZ=F",
+          "label": "Brent",
+          "price": 83.65,
+          "change_pct": -1.2746370824973425,
+          "high": 86.53,
+          "low": 83.47
+        },
+        {
+          "symbol": "NG=F",
+          "label": "Gas Natural",
+          "price": 2.914,
+          "change_pct": 0.3443526170798977,
+          "high": 2.94,
+          "low": 2.865
+        }
+      ]
+    },
+    {
+      "name": "Metais",
+      "items": [
+        {
+          "symbol": "GC=F",
+          "label": "Ouro",
+          "price": 4060.9,
+          "change_pct": -0.004924774075984785,
+          "high": 4080.7,
+          "low": 4023.3
+        },
+        {
+          "symbol": "SI=F",
+          "label": "Prata",
+          "price": 58.25,
+          "change_pct": -0.8881780439665121,
+          "high": 59.405,
+          "low": 58.12
+        },
+        {
+          "symbol": "HG=F",
+          "label": "Cobre",
+          "price": 6.379,
+          "change_pct": 0.7740916271721878,
+          "high": 6.418,
+          "low": 6.333
+        }
+      ]
+    },
+    {
+      "name": "Graos",
+      "items": [
+        {
+          "symbol": "ZC=F",
+          "label": "Milho",
+          "price": 469.0,
+          "change_pct": 8.126801152737752,
+          "high": 469.0,
+          "low": 458.75
+        },
+        {
+          "symbol": "ZW=F",
+          "label": "Trigo",
+          "price": 677.25,
+          "change_pct": 7.2871287128712865,
+          "high": 677.5,
+          "low": 642.75
+        },
+        {
+          "symbol": "ZS=F",
+          "label": "Soja",
+          "price": 1202.75,
+          "change_pct": -0.37274798094843653,
+          "high": 1203.25,
+          "low": 1184.75
+        }
+      ]
+    },
+    {
+      "name": "Moedas",
+      "items": [
+        {
+          "symbol": "DX-Y.NYB",
+          "label": "DXY",
+          "price": 100.707,
+          "change_pct": -0.2100694616474631,
+          "high": 101.029,
+          "low": 100.699
+        },
+        {
+          "symbol": "EURUSD=X",
+          "label": "EUR/USD",
+          "price": 1.1439,
+          "change_pct": 0.4831342234715248,
+          "high": 1.1447,
+          "low": 1.141
+        },
+        {
+          "symbol": "JPY=X",
+          "label": "USD/JPY",
+          "price": 162.18,
+          "change_pct": -0.15329774855475023,
+          "high": 162.423,
+          "low": 161.957
+        },
+        {
+          "symbol": "BRL=X",
+          "label": "USD/BRL",
+          "price": 5.0779,
+          "change_pct": -1.3597777734610283,
+          "high": 5.0834,
+          "low": 5.0568
+        }
+      ]
+    }
+  ]
+}
