@@ -71,21 +71,29 @@ function last(arr) {
 // --- US macro (FRED, fetched server-side by scripts/fetch_macro.py) ---------
 
 async function refreshUsMacro() {
-  const ids = ["statFedFunds", "statCpiMom", "statCpiYoy", "statCoreCpiMom", "statCoreCpiYoy"];
+  const ids = [
+    "statFedFunds", "statUs10y", "statUs2y", "statUnemployment",
+    "statCpiMom", "statCpiYoy", "statCoreCpiMom", "statCoreCpiYoy",
+    "statPceMom", "statPceYoy"
+  ];
   try {
     const res = await fetch(`data/macro.json?t=${Math.floor(Date.now() / 120000)}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
 
-    setStat("statFedFunds", data.fed_funds?.value != null ? `${data.fed_funds.value.toFixed(2)}%` : "indisp.");
+    const pct = (obj, field) => obj?.[field] != null ? `${obj[field].toFixed(2)}%` : "indisp.";
 
-    const cpi = data.cpi || {};
-    setStat("statCpiMom", cpi.mom_pct != null ? `${cpi.mom_pct.toFixed(2)}%` : "indisp.");
-    setStat("statCpiYoy", cpi.yoy_pct != null ? `${cpi.yoy_pct.toFixed(2)}%` : "indisp.");
+    setStat("statFedFunds", pct(data.fed_funds, "value"));
+    setStat("statUs10y", pct(data.us10y, "value"));
+    setStat("statUs2y", pct(data.us2y, "value"));
+    setStat("statUnemployment", pct(data.unemployment, "value"));
 
-    const coreCpi = data.core_cpi || {};
-    setStat("statCoreCpiMom", coreCpi.mom_pct != null ? `${coreCpi.mom_pct.toFixed(2)}%` : "indisp.");
-    setStat("statCoreCpiYoy", coreCpi.yoy_pct != null ? `${coreCpi.yoy_pct.toFixed(2)}%` : "indisp.");
+    setStat("statCpiMom", pct(data.cpi, "mom_pct"));
+    setStat("statCpiYoy", pct(data.cpi, "yoy_pct"));
+    setStat("statCoreCpiMom", pct(data.core_cpi, "mom_pct"));
+    setStat("statCoreCpiYoy", pct(data.core_cpi, "yoy_pct"));
+    setStat("statPceMom", pct(data.pce, "mom_pct"));
+    setStat("statPceYoy", pct(data.pce, "yoy_pct"));
   } catch (err) {
     console.error("Falha ao buscar dados macro (FRED):", err);
     ids.forEach(id => setStat(id, "indisp."));

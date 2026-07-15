@@ -141,7 +141,7 @@ html, body {
 
 .futures-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(126px, 1fr));
+  grid-template-columns: repeat(auto-fill, 150px);
   gap: 8px;
 }
 
@@ -186,9 +186,16 @@ html, body {
   color: var(--text-dim);
 }
 
+.macro-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.macro-group + .macro-group { margin-top: 14px; }
+
 .stat-tiles-wide {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, 170px);
   gap: 10px;
 }
 
@@ -197,8 +204,10 @@ html, body {
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 10px;
+  min-height: 62px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 4px;
 }
 

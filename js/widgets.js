@@ -25,10 +25,7 @@ function mountTickerTape() {
       { proName: "FX_IDC:USDBRL", title: "USD/BRL" },
       { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
       { proName: "FOREXCOM:NSXUSD", title: "Nasdaq 100" },
-      { proName: "CBOT:ZN1!", title: "US 10Y" },
-      { proName: "TVC:DXY", title: "DXY" },
       { proName: "TVC:GOLD", title: "Ouro" },
-      { proName: "NYMEX:CL1!", title: "WTI" },
       { proName: "BITSTAMP:BTCUSD", title: "Bitcoin" },
       { proName: "BITSTAMP:ETHUSD", title: "Ethereum" }
     ],

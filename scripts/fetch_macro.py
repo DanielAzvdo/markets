@@ -56,27 +56,38 @@ def index_mom_yoy(series_id):
     return {"level": latest, "mom_pct": mom, "yoy_pct": yoy, "date": latest_date}
 
 
+SIMPLE_SERIES = {
+    "fed_funds": "DFF",        # Effective Federal Funds Rate (daily, %)
+    "unemployment": "UNRATE",  # Unemployment rate (monthly, %)
+    "us10y": "DGS10",          # 10-Year Treasury yield (daily, %)
+    "us2y": "DGS2",            # 2-Year Treasury yield (daily, %)
+}
+
+INDEX_SERIES = {
+    "cpi": "CPIAUCSL",       # CPI, all urban consumers (headline)
+    "core_cpi": "CPILFESL",  # CPI less food & energy (core)
+    "pce": "PCEPI",          # PCE price index — the Fed's preferred inflation gauge
+}
+
+
 def main():
     if not API_KEY:
         raise SystemExit("FRED_API_KEY env var not set — add it as a GitHub Actions secret")
 
     out = {"generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")}
 
-    try:
-        fed_funds, fed_date = latest_value("DFF")
-        out["fed_funds"] = {"value": fed_funds, "date": fed_date}
-    except Exception as exc:
-        out["fed_funds"] = {"error": str(exc)}
+    for key, series_id in SIMPLE_SERIES.items():
+        try:
+            value, date = latest_value(series_id)
+            out[key] = {"value": value, "date": date}
+        except Exception as exc:
+            out[key] = {"error": str(exc)}
 
-    try:
-        out["cpi"] = index_mom_yoy("CPIAUCSL")
-    except Exception as exc:
-        out["cpi"] = {"error": str(exc)}
-
-    try:
-        out["core_cpi"] = index_mom_yoy("CPILFESL")
-    except Exception as exc:
-        out["core_cpi"] = {"error": str(exc)}
+    for key, series_id in INDEX_SERIES.items():
+        try:
+            out[key] = index_mom_yoy(series_id)
+        except Exception as exc:
+            out[key] = {"error": str(exc)}
 
     os.makedirs("data", exist_ok=True)
     with open("data/macro.json", "w", encoding="utf-8") as f:

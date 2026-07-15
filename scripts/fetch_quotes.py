@@ -37,6 +37,9 @@ CATEGORIES = [
     ]),
     ("Softs", [
         ("KC=F", "Coffee | Café"),
+        ("OJ=F", "Orange Juice | Suco de Laranja"),
+        ("CT=F", "Cotton | Algodão"),
+        ("SB=F", "Sugar | Açúcar"),
     ]),
     ("Moedas", [
         ("DX-Y.NYB", "DXY"),
