@@ -134,7 +134,7 @@ html, body {
 }
 
 .futures-cat-label {
-  font-size: 10px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--text-dim);
@@ -142,17 +142,17 @@ html, body {
 
 .futures-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 150px);
+  grid-template-columns: repeat(auto-fill, 168px);
   gap: 8px;
 }
 
 .fbox {
   border-radius: 4px;
-  padding: 9px 12px;
+  padding: 10px 13px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  min-height: 94px;
+  gap: 4px;
+  min-height: 104px;
   justify-content: center;
   background: var(--bg-tile);
   border: 1px solid var(--border);
@@ -162,28 +162,28 @@ html, body {
 .fbox.down { background: rgba(255, 77, 77, 0.18); border-color: rgba(255, 77, 77, 0.4); }
 
 .fbox-label {
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
   color: var(--text-dim);
   letter-spacing: 0.5px;
 }
 
 .fbox-price {
-  font-size: 17px;
+  font-size: 20px;
   font-weight: bold;
   color: var(--text);
 }
-.fbox-price.fbox-na { color: var(--text-dim); font-weight: normal; font-size: 13px; }
+.fbox-price.fbox-na { color: var(--text-dim); font-weight: normal; font-size: 15px; }
 
 .fbox-change {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
 }
 .fbox.up .fbox-change { color: var(--green); }
 .fbox.down .fbox-change { color: var(--red); }
 
 .fbox-range {
-  font-size: 9px;
+  font-size: 11px;
   color: var(--text-dim);
 }
 
@@ -196,7 +196,7 @@ html, body {
 
 .stat-tiles-wide {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 170px);
+  grid-template-columns: repeat(auto-fill, 185px);
   gap: 10px;
 }
 
@@ -204,22 +204,22 @@ html, body {
   background: var(--bg-tile);
   border: 1px solid var(--border);
   border-radius: 4px;
-  padding: 10px;
-  min-height: 62px;
+  padding: 11px;
+  min-height: 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 4px;
+  gap: 5px;
 }
 
 .stat-label {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-dim);
   text-transform: uppercase;
 }
 
 .stat-value {
-  font-size: 18px;
+  font-size: 21px;
   font-weight: bold;
 }
 .stat-value.up { color: var(--green); }
@@ -251,13 +251,13 @@ html, body {
 .news-item a {
   color: var(--text);
   text-decoration: none;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.4;
 }
 .news-item a:hover { color: var(--accent); }
 
 .news-meta {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-dim);
   margin-top: 3px;
 }
