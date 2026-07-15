@@ -1,0 +1,144 @@
+// Data fetched directly by the browser from public, CORS-enabled APIs — no backend needed.
+//   - Banco Central do Brasil SGS API (api.bcb.gov.br) — public, CORS: *
+//   - rss2json.com — free RSS-to-JSON proxy, used only to read public headlines + links
+//     (InfoMoney's own feed, and Google News search-by-site for FT/Reuters/Investing.com —
+//     headline + link only, never full article content, respecting paywalled sources).
+
+const BCB_SERIES = {
+  selic: 432,   // Meta Selic definida pelo Copom (% a.a.)
+  cdi: 4389,    // CDI anualizada base 252 (% a.a.)
+  ipcaMes: 433, // IPCA variação mensal (%)
+  ipca12m: 13522, // IPCA acumulado 12 meses (%)
+  usdBrl: 1     // Dólar comercial venda (PTAX)
+};
+
+async function fetchBcbSeries(code, n = 2) {
+  const url = `https://api.bcb.gov.br/dados/serie/bcdata.sgs.${code}/dados/ultimos/${n}?formato=json`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`BCB série ${code}: HTTP ${res.status}`);
+  const rows = await res.json();
+  // BCB does not guarantee row order across series, so sort by date defensively.
+  rows.sort((a, b) => parseBcbDate(a.data) - parseBcbDate(b.data));
+  return rows;
+}
+
+function parseBcbDate(ddmmyyyy) {
+  const [d, m, y] = ddmmyyyy.split("/");
+  return new Date(`${y}-${m}-${d}`).getTime();
+}
+
+function setStat(elId, text, direction) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  el.textContent = text;
+  el.classList.remove("up", "down");
+  if (direction === "up") el.classList.add("up");
+  if (direction === "down") el.classList.add("down");
+}
+
+async function refreshBrazilStats() {
+  try {
+    const [selic, cdi, ipcaMes, ipca12m, usdBrl] = await Promise.all([
+      fetchBcbSeries(BCB_SERIES.selic, 2),
+      fetchBcbSeries(BCB_SERIES.cdi, 2),
+      fetchBcbSeries(BCB_SERIES.ipcaMes, 2),
+      fetchBcbSeries(BCB_SERIES.ipca12m, 2),
+      fetchBcbSeries(BCB_SERIES.usdBrl, 2)
+    ]);
+
+    setStat("statSelic", `${last(selic).valor}% a.a.`);
+    setStat("statCdi", `${last(cdi).valor}% a.a.`);
+    setStat("statIpca", `${last(ipcaMes).valor}%`);
+    setStat("statIpca12", `${last(ipca12m).valor}%`);
+
+    const usdNow = parseFloat(last(usdBrl).valor);
+    const usdPrev = parseFloat(usdBrl[usdBrl.length - 2]?.valor ?? usdNow);
+    const dir = usdNow > usdPrev ? "up" : usdNow < usdPrev ? "down" : null;
+    setStat("statUsdBrl", `R$ ${usdNow.toFixed(4)}`, dir);
+
+    return true;
+  } catch (err) {
+    console.error("Falha ao buscar dados do BCB:", err);
+    ["statSelic", "statCdi", "statIpca", "statIpca12", "statUsdBrl"].forEach(id => setStat(id, "indisp."));
+    return false;
+  }
+}
+
+function last(arr) {
+  return arr[arr.length - 1];
+}
+
+// --- News ------------------------------------------------------------
+
+const RSS2JSON = "https://api.rss2json.com/v1/api.json?rss_url=";
+
+const NEWS_FEEDS = [
+  { source: "InfoMoney", url: "https://www.infomoney.com.br/feed/" },
+  { source: "Reuters", url: googleNewsRss("site:reuters.com markets", "pt-BR", "BR") },
+  { source: "Financial Times", url: googleNewsRss("site:ft.com markets", "en-US", "US") },
+  { source: "Investing.com", url: googleNewsRss("site:investing.com mercados", "pt-BR", "BR") }
+];
+
+function googleNewsRss(query, hl, gl) {
+  const ceid = `${gl}:${hl.split("-")[0]}`;
+  const params = new URLSearchParams({ q: query, hl, gl, ceid });
+  return `https://news.google.com/rss/search?${params.toString()}`;
+}
+
+async function fetchFeed(feed) {
+  const url = RSS2JSON + encodeURIComponent(feed.url);
+  const res = await fetch(url);
+  const json = await res.json();
+  if (json.status !== "ok") throw new Error(`Feed ${feed.source}: ${json.message || "erro"}`);
+  return json.items.slice(0, 6).map(item => ({
+    source: feed.source,
+    title: decodeHtmlEntities(item.title),
+    link: item.link,
+    date: new Date(item.pubDate.replace(" ", "T") + "Z")
+  }));
+}
+
+function decodeHtmlEntities(str) {
+  const el = document.createElement("textarea");
+  el.innerHTML = str;
+  return el.value;
+}
+
+async function refreshNews() {
+  const container = document.getElementById("rssNews");
+  const results = await Promise.allSettled(NEWS_FEEDS.map(fetchFeed));
+  const items = [];
+  results.forEach(r => {
+    if (r.status === "fulfilled") items.push(...r.value);
+  });
+
+  if (!items.length) {
+    container.innerHTML = `<div class="news-error">Não foi possível carregar as manchetes agora. Tente novamente em instantes.</div>`;
+    return;
+  }
+
+  items.sort((a, b) => b.date - a.date);
+
+  container.innerHTML = items.slice(0, 24).map(item => `
+    <div class="news-item">
+      <a href="${item.link}" target="_blank" rel="noopener">${escapeHtml(item.title)}</a>
+      <div class="news-meta"><span class="news-source">${escapeHtml(item.source)}</span> · ${formatRelativeTime(item.date)}</div>
+    </div>
+  `).join("");
+}
+
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function formatRelativeTime(date) {
+  const diffMin = Math.round((Date.now() - date.getTime()) / 60000);
+  if (diffMin < 1) return "agora";
+  if (diffMin < 60) return `${diffMin} min atrás`;
+  const diffH = Math.round(diffMin / 60);
+  if (diffH < 24) return `${diffH} h atrás`;
+  const diffD = Math.round(diffH / 24);
+  return `${diffD} d atrás`;
+}

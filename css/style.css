@@ -1,0 +1,216 @@
+:root {
+  --bg: #0a0e14;
+  --bg-panel: #10161f;
+  --bg-tile: #161d29;
+  --border: #232b38;
+  --text: #d7dde5;
+  --text-dim: #7c8798;
+  --accent: #ff9f1c;
+  --green: #2ecc71;
+  --red: #ff4d4d;
+  --font-mono: "Consolas", "SFMono-Regular", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 18px;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+.brand-accent { color: var(--accent); }
+
+.clock {
+  margin-left: 16px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-dim);
+  display: inline-block;
+}
+.status-dot.ok { background: var(--green); box-shadow: 0 0 6px var(--green); }
+.status-dot.err { background: var(--red); box-shadow: 0 0 6px var(--red); }
+
+#tickerTape {
+  border-bottom: 1px solid var(--border);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  padding: 14px;
+}
+
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px 14px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-wide { grid-column: 1 / -1; }
+
+.panel h2 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+
+.panel-body {
+  flex: 1;
+  min-height: 260px;
+}
+
+.panel-body.tall { min-height: 420px; }
+
+.panel-body.split {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 12px;
+  min-height: 320px;
+}
+
+.chart-slot { min-height: 300px; }
+
+.stat-tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-content: start;
+}
+
+.stat-tile {
+  background: var(--bg-tile);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: bold;
+}
+.stat-value.up { color: var(--green); }
+.stat-value.down { color: var(--red); }
+
+.ext-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--accent);
+  text-decoration: none;
+}
+.ext-link:hover { text-decoration: underline; }
+
+.news-list {
+  overflow-y: auto;
+  max-height: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 4px;
+}
+
+.news-item {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+
+.news-item a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.news-item a:hover { color: var(--accent); }
+
+.news-meta {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 3px;
+}
+
+.news-source {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.news-loading, .news-error {
+  color: var(--text-dim);
+  font-size: 12px;
+  padding: 8px 0;
+}
+
+.quicklinks {
+  padding: 14px 18px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+}
+
+.quicklinks-label { color: var(--text-dim); }
+
+.quicklinks a {
+  color: var(--text-dim);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+.quicklinks a:hover { color: var(--accent); border-color: var(--accent); }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .panel-body.split { grid-template-columns: 1fr; }
+}

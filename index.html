@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMB Markets | Terminal</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <span class="brand">AMB<span class="brand-accent">MARKETS</span></span>
+    <span class="clock" id="clock">--:--:--</span>
+  </div>
+  <div class="topbar-right">
+    <span class="status-dot" id="statusDot"></span>
+    <span id="statusText">conectando…</span>
+  </div>
+</header>
+
+<!-- Scrolling ticker tape -->
+<div class="tradingview-widget-container" id="tickerTape">
+  <div class="tradingview-widget-container__widget"></div>
+</div>
+
+<main class="grid">
+
+  <!-- BRASIL -->
+  <section class="panel panel-wide">
+    <h2>Brasil</h2>
+    <div class="panel-body split">
+      <div class="chart-slot" id="chartIbov"></div>
+      <div class="stat-tiles" id="brStats">
+        <div class="stat-tile"><span class="stat-label">Selic (meta)</span><span class="stat-value" id="statSelic">…</span></div>
+        <div class="stat-tile"><span class="stat-label">CDI (anualizado)</span><span class="stat-value" id="statCdi">…</span></div>
+        <div class="stat-tile"><span class="stat-label">IPCA (mês)</span><span class="stat-value" id="statIpca">…</span></div>
+        <div class="stat-tile"><span class="stat-label">IPCA (12 meses)</span><span class="stat-value" id="statIpca12">…</span></div>
+        <div class="stat-tile"><span class="stat-label">USD/BRL</span><span class="stat-value" id="statUsdBrl">…</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MERCADOS GLOBAIS (indices, juros, cambio, commodities, cripto em um unico widget com abas) -->
+  <section class="panel panel-wide">
+    <h2>Mercados Globais</h2>
+    <div class="panel-body tall" id="marketOverview"></div>
+    <a class="ext-link" href="https://www.cmegroup.com/pt/markets/interest-rates/cme-fedwatch-tool.html" target="_blank" rel="noopener">Abrir CME FedWatch Tool (probabilidades Fed) &#8599;</a>
+  </section>
+
+  <!-- CALENDARIO ECONOMICO -->
+  <section class="panel panel-wide">
+    <h2>Calendário Econômico</h2>
+    <div class="panel-body tall" id="econCalendar"></div>
+  </section>
+
+  <!-- NOTICIAS -->
+  <section class="panel panel-wide">
+    <h2>Notícias</h2>
+    <div class="panel-body split">
+      <div class="tall" id="tvNews"></div>
+      <div class="news-list" id="rssNews">
+        <div class="news-loading">Carregando manchetes…</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="quicklinks">
+  <span class="quicklinks-label">Fontes rápidas:</span>
+  <a href="https://tradingeconomics.com/" target="_blank" rel="noopener">Trading Economics</a>
+  <a href="https://br.tradingview.com/markets/" target="_blank" rel="noopener">TradingView</a>
+  <a href="https://www.ft.com/" target="_blank" rel="noopener">Financial Times</a>
+  <a href="https://www.reuters.com/markets/" target="_blank" rel="noopener">Reuters Markets</a>
+  <a href="https://www.infomoney.com.br/" target="_blank" rel="noopener">InfoMoney</a>
+  <a href="https://www.cmegroup.com/pt/markets/interest-rates/cme-fedwatch-tool.html" target="_blank" rel="noopener">CME FedWatch</a>
+  <a href="https://www.portfoliovisualizer.com/asset-correlations?s=y&symbols=VTI+VNQ+GLD+BND" target="_blank" rel="noopener">Portfolio Visualizer</a>
+  <a href="https://br.investing.com/" target="_blank" rel="noopener">Investing.com</a>
+</footer>
+
+<script src="js/widgets.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
