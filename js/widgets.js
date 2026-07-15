@@ -25,7 +25,7 @@ function mountTickerTape() {
       { proName: "FX_IDC:USDBRL", title: "USD/BRL" },
       { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
       { proName: "FOREXCOM:NSXUSD", title: "Nasdaq 100" },
-      { proName: "CBOT:ZB1!", title: "US 10Y" },
+      { proName: "CBOT:ZN1!", title: "US 10Y" },
       { proName: "TVC:DXY", title: "DXY" },
       { proName: "TVC:GOLD", title: "Ouro" },
       { proName: "NYMEX:CL1!", title: "WTI" },
@@ -40,17 +40,66 @@ function mountTickerTape() {
   });
 }
 
-function mountIbovChart() {
-  mountTVWidget("chartIbov", "https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js", {
-    symbols: [["BMFBOVESPA:IBOV|1D"]],
-    chartOnly: false,
+// Finviz-style futures board — no official TradingView widget matches that flat
+// colored-price-grid look, so this reuses the market-overview widget (confirmed
+// working) with a wider set of global futures across the categories requested.
+function mountFuturesBoard() {
+  mountTVWidget("chartIbov", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js", {
+    colorTheme: "dark",
+    dateRange: "1D",
+    showChart: true,
+    locale: "br",
+    isTransparent: true,
+    showSymbolLogo: true,
+    showFloatingTooltip: false,
     width: "100%",
     height: "100%",
-    locale: "br",
-    colorTheme: "dark",
-    isTransparent: true,
-    autosize: true,
-    showVolume: false
+    plotLineColorGrowing: "rgba(46, 204, 113, 1)",
+    plotLineColorFalling: "rgba(255, 77, 77, 1)",
+    tabs: [
+      {
+        title: "Índices",
+        symbols: [
+          { s: "BMFBOVESPA:IBOV", d: "Ibovespa" },
+          { s: "FOREXCOM:SPXUSD", d: "S&P 500" },
+          { s: "FOREXCOM:NSXUSD", d: "Nasdaq 100" },
+          { s: "FOREXCOM:DJI", d: "Dow Jones" }
+        ]
+      },
+      {
+        title: "Energia",
+        symbols: [
+          { s: "NYMEX:CL1!", d: "WTI" },
+          { s: "TVC:UKOIL", d: "Brent" },
+          { s: "NYMEX:NG1!", d: "Gás Natural" }
+        ]
+      },
+      {
+        title: "Metais",
+        symbols: [
+          { s: "TVC:GOLD", d: "Ouro" },
+          { s: "TVC:SILVER", d: "Prata" },
+          { s: "COMEX:HG1!", d: "Cobre" }
+        ]
+      },
+      {
+        title: "Grãos",
+        symbols: [
+          { s: "CBOT:ZC1!", d: "Milho" },
+          { s: "CBOT:ZW1!", d: "Trigo" },
+          { s: "CBOT:ZS1!", d: "Soja" }
+        ]
+      },
+      {
+        title: "Moedas",
+        symbols: [
+          { s: "ICEUS:DX1!", d: "DXY" },
+          { s: "FX:EURUSD", d: "EUR/USD" },
+          { s: "FX:USDJPY", d: "USD/JPY" },
+          { s: "FX_IDC:USDBRL", d: "USD/BRL" }
+        ]
+      }
+    ]
   });
 }
 
@@ -78,16 +127,16 @@ function mountMarketOverview() {
           { s: "FOREXCOM:NSXUSD", d: "Nasdaq 100" },
           { s: "FOREXCOM:DJI", d: "Dow Jones" },
           { s: "TVC:UKX", d: "FTSE 100" },
-          { s: "TVC:DEU40", d: "DAX" }
+          { s: "TVC:DAX", d: "DAX" }
         ]
       },
       {
         title: "Juros",
         symbols: [
-          { s: "TVC:US02Y", d: "US 2Y" },
-          { s: "TVC:US10Y", d: "US 10Y" },
-          { s: "TVC:US30Y", d: "US 30Y" },
-          { s: "FRED:DFF", d: "Fed Funds" }
+          { s: "CBOT:ZT1!", d: "US 2Y (Fut.)" },
+          { s: "CBOT:ZN1!", d: "US 10Y (Fut.)" },
+          { s: "CBOT:ZB1!", d: "US 30Y (Fut.)" },
+          { s: "CBOT:ZQ1!", d: "Fed Funds (Fut.)" }
         ]
       },
       {
@@ -96,7 +145,7 @@ function mountMarketOverview() {
           { s: "FX_IDC:USDBRL", d: "USD/BRL" },
           { s: "FX:EURUSD", d: "EUR/USD" },
           { s: "FX_IDC:EURBRL", d: "EUR/BRL" },
-          { s: "TVC:DXY", d: "DXY" },
+          { s: "ICEUS:DX1!", d: "DXY (Fut.)" },
           { s: "FX:USDJPY", d: "USD/JPY" },
           { s: "FX:USDCNH", d: "USD/CNH" }
         ]
@@ -108,7 +157,7 @@ function mountMarketOverview() {
           { s: "TVC:UKOIL", d: "Brent" },
           { s: "TVC:GOLD", d: "Ouro" },
           { s: "TVC:SILVER", d: "Prata" },
-          { s: "CME_MINI:ZC1!", d: "Milho" },
+          { s: "CBOT:ZC1!", d: "Milho" },
           { s: "ICEUS:KC1!", d: "Café" }
         ]
       },
@@ -151,7 +200,7 @@ function mountTVNews() {
 
 function mountAllWidgets() {
   mountTickerTape();
-  mountIbovChart();
+  mountFuturesBoard();
   mountMarketOverview();
   mountEconCalendar();
   mountTVNews();

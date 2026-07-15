@@ -10,7 +10,7 @@
 
 <header class="topbar">
   <div class="topbar-left">
-    <span class="brand">AMB<span class="brand-accent">MARKETS</span></span>
+    <span class="brand"><span class="brand-accent">MARKETS</span></span>
     <span class="clock" id="clock">--:--:--</span>
   </div>
   <div class="topbar-right">
@@ -26,11 +26,25 @@
 
 <main class="grid">
 
+  <!-- NOTICIAS -->
+  <section class="panel panel-wide">
+    <h2>Notícias</h2>
+    <div class="panel-body split">
+      <div class="tall" id="tvNews"></div>
+      <div class="news-list" id="rssNews">
+        <div class="news-loading">Carregando manchetes…</div>
+      </div>
+    </div>
+  </section>
+
   <!-- BRASIL -->
   <section class="panel panel-wide">
     <h2>Brasil</h2>
     <div class="panel-body split">
-      <div class="chart-slot" id="chartIbov"></div>
+      <div class="chart-slot">
+        <div class="slot-caption">Futuros Globais</div>
+        <div class="chart-slot-inner" id="chartIbov"></div>
+      </div>
       <div class="stat-tiles" id="brStats">
         <div class="stat-tile"><span class="stat-label">Selic (meta)</span><span class="stat-value" id="statSelic">…</span></div>
         <div class="stat-tile"><span class="stat-label">CDI (anualizado)</span><span class="stat-value" id="statCdi">…</span></div>
@@ -52,17 +66,6 @@
   <section class="panel panel-wide">
     <h2>Calendário Econômico</h2>
     <div class="panel-body tall" id="econCalendar"></div>
-  </section>
-
-  <!-- NOTICIAS -->
-  <section class="panel panel-wide">
-    <h2>Notícias</h2>
-    <div class="panel-body split">
-      <div class="tall" id="tvNews"></div>
-      <div class="news-list" id="rssNews">
-        <div class="news-loading">Carregando manchetes…</div>
-      </div>
-    </div>
   </section>
 
 </main>

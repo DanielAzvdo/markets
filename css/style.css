@@ -109,7 +109,17 @@ html, body {
   min-height: 320px;
 }
 
-.chart-slot { min-height: 300px; }
+.chart-slot { min-height: 300px; display: flex; flex-direction: column; }
+
+.slot-caption {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.chart-slot-inner { flex: 1; }
 
 .stat-tiles {
   display: grid;
