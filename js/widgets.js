@@ -37,8 +37,11 @@ function mountTickerTape() {
   });
 }
 
-// Single widget with tabs covering Indices/Juros/Cambio/Commodities/Cripto —
+// Single widget with tabs covering Indices/Cambio/Commodities/Cripto —
 // keeps the page to a handful of TradingView iframes instead of one per category.
+// (Juros/Treasuries tab was dropped — this widget can't render futures-yield
+// symbols reliably on the free tier; Treasury 10Y/2Y already show correctly
+// via FRED in the Indicadores Macro panel.)
 function mountMarketOverview() {
   mountTVWidget("marketOverview", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js", {
     colorTheme: "dark",
@@ -62,15 +65,6 @@ function mountMarketOverview() {
           { s: "FOREXCOM:DJI", d: "Dow Jones" },
           { s: "TVC:UKX", d: "FTSE 100" },
           { s: "TVC:DAX", d: "DAX" }
-        ]
-      },
-      {
-        title: "Juros",
-        symbols: [
-          { s: "CBOT:ZT1!", d: "US 2Y (Fut.)" },
-          { s: "CBOT:ZN1!", d: "US 10Y (Fut.)" },
-          { s: "CBOT:ZB1!", d: "US 30Y (Fut.)" },
-          { s: "CBOT:ZQ1!", d: "Fed Funds (Fut.)" }
         ]
       },
       {
