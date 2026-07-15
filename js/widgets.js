@@ -102,6 +102,41 @@ function mountMarketOverview() {
   });
 }
 
+// Advanced Chart widget — has a built-in symbol search (allow_symbol_change),
+// the closest legitimate equivalent to a "search an asset, see its chart"
+// experience. Google Finance's own charts have no public embed API, so this
+// is the real substitute.
+function mountAdvancedChart() {
+  mountTVWidget("advancedChart", "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js", {
+    autosize: true,
+    symbol: "FOREXCOM:SPXUSD",
+    interval: "D",
+    timezone: "America/Sao_Paulo",
+    theme: "dark",
+    style: "1",
+    locale: "br",
+    withdateranges: true,
+    allow_symbol_change: true,
+    details: false,
+    hide_side_toolbar: false,
+    calendar: false,
+    support_host: "https://www.tradingview.com"
+  });
+}
+
+function setupSubtabs() {
+  document.querySelectorAll(".subtab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const bar = btn.closest(".panel");
+      bar.querySelectorAll(".subtab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      bar.querySelectorAll(".subtab-panel").forEach(p => { p.style.display = "none"; });
+      const target = document.getElementById(btn.dataset.target);
+      if (target) target.style.display = "";
+    });
+  });
+}
+
 function mountEconCalendar() {
   mountTVWidget("econCalendar", "https://s3.tradingview.com/external-embedding/embed-widget-events.js", {
     colorTheme: "dark",
@@ -129,6 +164,8 @@ function mountTVNews() {
 function mountAllWidgets() {
   mountTickerTape();
   mountMarketOverview();
+  mountAdvancedChart();
   mountEconCalendar();
   mountTVNews();
+  setupSubtabs();
 }

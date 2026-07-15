@@ -120,6 +120,34 @@ html, body {
   min-height: 320px;
 }
 
+.subtab-bar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.subtab-btn {
+  background: var(--bg-tile);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.subtab-btn:hover { color: var(--text); }
+
+.subtab-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+  font-weight: bold;
+}
+
 #chartIbov {
   overflow-y: auto;
   display: flex;

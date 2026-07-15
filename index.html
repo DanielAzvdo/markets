@@ -74,10 +74,15 @@
     </div>
   </section>
 
-  <!-- MERCADOS GLOBAIS (indices, juros, cambio, commodities, cripto em um unico widget com abas) -->
+  <!-- MERCADOS GLOBAIS (indices, cambio, commodities, cripto em um unico widget com abas + grafico com busca) -->
   <section class="panel panel-wide">
     <h2>Mercados Globais</h2>
-    <div class="panel-body tall" id="marketOverview"></div>
+    <div class="subtab-bar">
+      <button class="subtab-btn active" data-target="marketOverview">Visão Geral</button>
+      <button class="subtab-btn" data-target="advancedChart">Gráfico (buscar ativo)</button>
+    </div>
+    <div class="panel-body tall subtab-panel" id="marketOverview"></div>
+    <div class="panel-body tall subtab-panel" id="advancedChart" style="display:none;"></div>
     <a class="ext-link" href="https://www.cmegroup.com/pt/markets/interest-rates/cme-fedwatch-tool.html" target="_blank" rel="noopener">Abrir CME FedWatch Tool (probabilidades Fed) &#8599;</a>
   </section>
 
