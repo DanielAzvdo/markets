@@ -48,8 +48,13 @@ async function refreshBrazilStats() {
 
     setStat("statSelic", `${last(selic).valor}% a.a.`);
     setStat("statCdi", `${last(cdi).valor}% a.a.`);
-    setStat("statIpca", `${last(ipcaMes).valor}%`);
-    setStat("statIpca12", `${last(ipca12m).valor}%`);
+
+    const ipcaMesVal = parseFloat(last(ipcaMes).valor);
+    const ipca12mVal = parseFloat(last(ipca12m).valor);
+    const arrow = v => v > 0 ? "▲" : v < 0 ? "▼" : "•";
+    const dirOf = v => v > 0 ? "up" : v < 0 ? "down" : null;
+    setStat("statIpca", `${arrow(ipcaMesVal)} ${Math.abs(ipcaMesVal).toFixed(2)}%`, dirOf(ipcaMesVal));
+    setStat("statIpca12", `${arrow(ipca12mVal)} ${Math.abs(ipca12mVal).toFixed(2)}%`, dirOf(ipca12mVal));
 
     const usdNow = parseFloat(last(usdBrl).valor);
     const usdPrev = parseFloat(usdBrl[usdBrl.length - 2]?.valor ?? usdNow);
@@ -83,17 +88,28 @@ async function refreshUsMacro() {
 
     const pct = (obj, field) => obj?.[field] != null ? `${obj[field].toFixed(2)}%` : "indisp.";
 
+    // These are levels, not deltas — no up/down direction to show.
     setStat("statFedFunds", pct(data.fed_funds, "value"));
     setStat("statUs10y", pct(data.us10y, "value"));
     setStat("statUs2y", pct(data.us2y, "value"));
     setStat("statUnemployment", pct(data.unemployment, "value"));
 
-    setStat("statCpiMom", pct(data.cpi, "mom_pct"));
-    setStat("statCpiYoy", pct(data.cpi, "yoy_pct"));
-    setStat("statCoreCpiMom", pct(data.core_cpi, "mom_pct"));
-    setStat("statCoreCpiYoy", pct(data.core_cpi, "yoy_pct"));
-    setStat("statPceMom", pct(data.pce, "mom_pct"));
-    setStat("statPceYoy", pct(data.pce, "yoy_pct"));
+    // These are genuine period-over-period changes — show direction, same
+    // arrow/color convention as the Futuros Globais board.
+    const pctWithArrow = (elId, obj, field) => {
+      const value = obj?.[field];
+      if (value == null) { setStat(elId, "indisp."); return; }
+      const dir = value > 0 ? "up" : value < 0 ? "down" : null;
+      const arrow = value > 0 ? "▲" : value < 0 ? "▼" : "•";
+      setStat(elId, `${arrow} ${Math.abs(value).toFixed(2)}%`, dir);
+    };
+
+    pctWithArrow("statCpiMom", data.cpi, "mom_pct");
+    pctWithArrow("statCpiYoy", data.cpi, "yoy_pct");
+    pctWithArrow("statCoreCpiMom", data.core_cpi, "mom_pct");
+    pctWithArrow("statCoreCpiYoy", data.core_cpi, "yoy_pct");
+    pctWithArrow("statPceMom", data.pce, "mom_pct");
+    pctWithArrow("statPceYoy", data.pce, "yoy_pct");
   } catch (err) {
     console.error("Falha ao buscar dados macro (FRED):", err);
     ids.forEach(id => setStat(id, "indisp."));

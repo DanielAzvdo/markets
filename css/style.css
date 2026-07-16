@@ -262,6 +262,7 @@ html, body {
 .stat-tile {
   background: var(--bg-tile);
   border: 1px solid var(--border);
+  border-left: 3px solid var(--border);
   border-radius: 4px;
   padding: 11px;
   min-height: 70px;
@@ -270,6 +271,15 @@ html, body {
   justify-content: center;
   gap: 5px;
 }
+
+/* Categorical accent — visual grouping only, not a value judgment (a
+   metric moving "up" isn't inherently good or bad, so color here just
+   helps scan by topic; direction color for CPI/Core CPI/PCE is separate,
+   via .stat-value.up/.down below). */
+.stat-tile.cat-juros { border-left-color: #4a9eff; }
+.stat-tile.cat-inflacao { border-left-color: var(--accent); }
+.stat-tile.cat-emprego { border-left-color: #a855f7; }
+.stat-tile.cat-cambio { border-left-color: #7c8798; }
 
 .stat-label {
   font-size: 12px;
