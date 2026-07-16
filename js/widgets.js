@@ -37,83 +37,21 @@ function mountTickerTape() {
   });
 }
 
-// Single widget with tabs covering Indices/Cambio/Commodities/Cripto —
-// keeps the page to a handful of TradingView iframes instead of one per category.
-// (Juros/Treasuries tab was dropped — this widget can't render futures-yield
-// symbols reliably on the free tier; Treasury 10Y/2Y already show correctly
-// via FRED in the Indicadores Macro panel.)
-function mountMarketOverview() {
-  mountTVWidget("marketOverview", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js", {
-    colorTheme: "dark",
-    dateRange: "1D",
-    showChart: true,
-    locale: "br",
-    isTransparent: true,
-    showSymbolLogo: true,
-    showFloatingTooltip: false,
-    width: "100%",
-    height: "100%",
-    plotLineColorGrowing: "rgba(46, 204, 113, 1)",
-    plotLineColorFalling: "rgba(255, 77, 77, 1)",
-    tabs: [
-      {
-        title: "Índices",
-        symbols: [
-          { s: "BMFBOVESPA:IBOV", d: "Ibovespa" },
-          { s: "FOREXCOM:SPXUSD", d: "S&P 500" },
-          { s: "FOREXCOM:NSXUSD", d: "Nasdaq 100" },
-          { s: "FOREXCOM:DJI", d: "Dow Jones" },
-          { s: "TVC:UKX", d: "FTSE 100" },
-          { s: "TVC:DAX", d: "DAX" }
-        ]
-      },
-      {
-        title: "Câmbio",
-        symbols: [
-          { s: "FX_IDC:USDBRL", d: "USD/BRL" },
-          { s: "FX:EURUSD", d: "EUR/USD" },
-          { s: "FX_IDC:EURBRL", d: "EUR/BRL" },
-          { s: "ICEUS:DX1!", d: "DXY (Fut.)" },
-          { s: "FX:USDJPY", d: "USD/JPY" },
-          { s: "FX:USDCNH", d: "USD/CNH" }
-        ]
-      },
-      {
-        title: "Commodities",
-        symbols: [
-          { s: "NYMEX:CL1!", d: "WTI" },
-          { s: "TVC:UKOIL", d: "Brent" },
-          { s: "TVC:GOLD", d: "Ouro" },
-          { s: "TVC:SILVER", d: "Prata" },
-          { s: "CBOT:ZC1!", d: "Milho" },
-          { s: "ICEUS:KC1!", d: "Café" }
-        ]
-      },
-      {
-        title: "Cripto",
-        symbols: [
-          { s: "BITSTAMP:BTCUSD", d: "Bitcoin" },
-          { s: "BITSTAMP:ETHUSD", d: "Ethereum" },
-          { s: "BINANCE:SOLUSDT", d: "Solana" },
-          { s: "BINANCE:BNBUSDT", d: "BNB" }
-        ]
-      }
-    ]
-  });
-}
-
 // Advanced Chart widget — has a built-in symbol search (allow_symbol_change),
 // the closest legitimate equivalent to a "search an asset, see its chart"
 // experience. Google Finance's own charts have no public embed API, so this
-// is the real substitute.
-function mountAdvancedChart() {
+// is the real substitute. A visible search box (below) drives it, since the
+// widget's own built-in search (click the symbol name) is easy to miss.
+function mountAdvancedChart(symbol = "FOREXCOM:SPXUSD") {
+  const container = document.getElementById("advancedChart");
+  if (container) container.innerHTML = "";
   mountTVWidget("advancedChart", "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js", {
     autosize: true,
-    symbol: "FOREXCOM:SPXUSD",
+    symbol: symbol,
     interval: "D",
     timezone: "America/Sao_Paulo",
     theme: "dark",
-    style: "1",
+    style: "3", // area chart
     locale: "br",
     withdateranges: true,
     allow_symbol_change: true,
@@ -124,16 +62,14 @@ function mountAdvancedChart() {
   });
 }
 
-function setupSubtabs() {
-  document.querySelectorAll(".subtab-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const bar = btn.closest(".panel");
-      bar.querySelectorAll(".subtab-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      bar.querySelectorAll(".subtab-panel").forEach(p => { p.style.display = "none"; });
-      const target = document.getElementById(btn.dataset.target);
-      if (target) target.style.display = "";
-    });
+function setupChartSearch() {
+  const form = document.getElementById("chartSearchForm");
+  const input = document.getElementById("chartSymbolSearch");
+  if (!form || !input) return;
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const value = input.value.trim();
+    if (value) mountAdvancedChart(value.toUpperCase());
   });
 }
 
@@ -170,9 +106,8 @@ function mountTVNews() {
 
 function mountAllWidgets() {
   mountTickerTape();
-  mountMarketOverview();
   mountAdvancedChart();
+  setupChartSearch();
   mountEconCalendar();
   mountTVNews();
-  setupSubtabs();
 }
