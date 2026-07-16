@@ -113,6 +113,14 @@ html, body {
 
 .panel-body.tall { min-height: 420px; }
 
+#econCalendar {
+  display: flex;
+  justify-content: center;
+  background: var(--bg-tile);
+  border-radius: 6px;
+  padding: 10px;
+}
+
 .panel-body.split {
   display: grid;
   grid-template-columns: 1.3fr 1fr;

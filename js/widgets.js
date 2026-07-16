@@ -87,8 +87,10 @@ function mountEconCalendar() {
     timeZone: "12", // GMT-3 (Brasília)
     lang: "12"      // Portuguese
   });
+  // The widget's own content has a fixed natural width and doesn't stretch
+  // to fill a wide iframe, so center it instead of leaving it flush-left.
   container.innerHTML = `<iframe src="https://sslecal2.investing.com/?${params.toString()}"
-    width="100%" height="100%" frameborder="0" style="min-height:500px;border:0;"
+    width="800" height="600" frameborder="0" style="border:0; max-width:100%;"
     title="Calendário Econômico — Investing.com"></iframe>`;
 }
 
