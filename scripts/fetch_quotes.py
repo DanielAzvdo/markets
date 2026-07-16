@@ -29,6 +29,7 @@ CATEGORIES = [
     ("Metais", [
         ("GC=F", "Gold | Ouro"),
         ("SI=F", "Silver | Prata"),
+        ("PL=F", "Platinum | Platina"),
         ("HG=F", "Copper | Cobre"),
     ]),
     ("Graos", [
@@ -44,11 +45,12 @@ CATEGORIES = [
     ]),
     ("Moedas", [
         ("DX-Y.NYB", "DXY"),
+        ("BRL=X", "USD/BRL"),
         ("EURUSD=X", "EUR/USD"),
         ("GBP=X", "USD/GBP"),
         ("JPY=X", "USD/JPY"),
-        ("BRL=X", "USD/BRL"),
         ("BTC-USD", "Bitcoin | BTC/USD"),
+        ("ETH-USD", "Ethereum | ETH/USD"),
     ]),
 ]
 
