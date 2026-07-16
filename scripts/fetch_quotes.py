@@ -97,8 +97,11 @@ def fetch_symbol(symbol, retries=3):
     return {
         "price": price,
         "change_pct": change_pct,
-        "high": meta.get("regularMarketDayHigh"),
-        "low": meta.get("regularMarketDayLow"),
+        # Yahoo sometimes reports 0.0 for day high/low on thinly-tracked
+        # symbols (seen on ^BVSP, IFIX.SA) — no real quote has a 0 high/low,
+        # so treat that as "not available" rather than showing a fake value.
+        "high": meta.get("regularMarketDayHigh") or None,
+        "low": meta.get("regularMarketDayLow") or None,
     }
 
 
