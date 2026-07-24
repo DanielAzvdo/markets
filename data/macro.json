@@ -1,24 +1,37 @@
 {
-  "generated_at": "2026-07-24T11:00:31Z",
+  "generated_at": "2026-07-24T11:10:38Z",
   "fed_funds": {
-    "error": "The read operation timed out"
+    "value": 3.63,
+    "date": "2026-07-22"
   },
   "unemployment": {
-    "error": "The read operation timed out"
+    "value": 4.2,
+    "date": "2026-06-01"
   },
   "us10y": {
-    "error": "The read operation timed out"
+    "value": 4.67,
+    "date": "2026-07-22"
   },
   "us2y": {
-    "error": "The read operation timed out"
+    "value": 4.31,
+    "date": "2026-07-22"
   },
   "cpi": {
-    "error": "The read operation timed out"
+    "level": 332.568,
+    "mom_pct": -0.42248165303806573,
+    "yoy_pct": 3.4635307293854063,
+    "date": "2026-06-01"
   },
   "core_cpi": {
-    "error": "The read operation timed out"
+    "level": 336.065,
+    "mom_pct": -0.016660666843185394,
+    "yoy_pct": 2.565785056369746,
+    "date": "2026-06-01"
   },
   "pce": {
-    "error": "The read operation timed out"
+    "level": 131.527,
+    "mom_pct": 0.44983121782828417,
+    "yoy_pct": 4.072638075644874,
+    "date": "2026-05-01"
   }
 }
