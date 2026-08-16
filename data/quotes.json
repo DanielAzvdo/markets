@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T21:55:20Z",
+  "generated_at": "2026-08-16T22:02:32Z",
   "categories": [
     {
       "name": "Indices",
@@ -7,50 +7,32 @@
         {
           "symbol": "^GSPC",
           "label": "S&P 500",
-          "price": 7785.76,
-          "change_pct": -0.16964035057623117,
-          "high": 7810.01,
-          "low": 7776.31
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "^DJI",
           "label": "Dow Jones",
-          "price": 53732.41,
-          "change_pct": -0.1998111156488886,
-          "high": 53890.84,
-          "low": 53673.47
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "^IXIC",
           "label": "Nasdaq",
-          "price": 26729.164,
-          "change_pct": -0.2755856289856437,
-          "high": 26862.168,
-          "low": 26661.953
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "^BVSP",
           "label": "Ibovespa",
-          "price": 166934.2,
-          "change_pct": -0.09981986942028376,
-          "high": null,
-          "low": null
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "IFIX.SA",
           "label": "IFIX",
-          "price": 3686.33,
-          "change_pct": -0.17115079956129509,
-          "high": null,
-          "low": null
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "^VIX",
           "label": "VIX",
-          "price": 14.25,
-          "change_pct": -2.5974033593193826,
-          "high": 14.72,
-          "low": 14.18
+          "error": "HTTP Error 429: Too Many Requests"
         }
       ]
     },
@@ -60,26 +42,17 @@
         {
           "symbol": "CL=F",
           "label": "WTI | Petróleo",
-          "price": 82.4,
-          "change_pct": 1.4153846153846223,
-          "high": 82.99,
-          "low": 80.71
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "BZ=F",
           "label": "Brent | Petróleo",
-          "price": 88.52,
-          "change_pct": 1.6653271049247182,
-          "high": 88.79,
-          "low": 86.44
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "NG=F",
           "label": "Nat Gas | Gás Natural",
-          "price": 2.733,
-          "change_pct": 0.22002207229722467,
-          "high": 2.783,
-          "low": 2.71
+          "error": "HTTP Error 429: Too Many Requests"
         }
       ]
     },
@@ -89,18 +62,12 @@
         {
           "symbol": "GC=F",
           "label": "Gold | Ouro",
-          "price": 4437.3,
-          "change_pct": 1.6889701323303072,
-          "high": 4454.6,
-          "low": 4365.5
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "SI=F",
           "label": "Silver | Prata",
-          "price": 65.108,
-          "change_pct": 0.3622445353035227,
-          "high": 65.885,
-          "low": 63.645
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "PL=F",
@@ -113,10 +80,7 @@
         {
           "symbol": "HG=F",
           "label": "Copper | Cobre",
-          "price": 6.613,
-          "change_pct": 0.31095623116023796,
-          "high": 6.623,
-          "low": 6.554
+          "error": "HTTP Error 429: Too Many Requests"
         }
       ]
     },
@@ -126,26 +90,17 @@
         {
           "symbol": "ZC=F",
           "label": "Corn | Milho",
-          "price": 483.25,
-          "change_pct": 7.868303571428571,
-          "high": 484.25,
-          "low": 471.5
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "ZW=F",
           "label": "Wheat | Trigo",
-          "price": 689.5,
-          "change_pct": 5.630026809651475,
-          "high": 692.0,
-          "low": 667.5
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "ZS=F",
           "label": "Soybean | Soja",
-          "price": 1192.5,
-          "change_pct": 2.075754333404665,
-          "high": 1193.0,
-          "low": 1182.5
+          "error": "HTTP Error 429: Too Many Requests"
         }
       ]
     },
@@ -155,34 +110,22 @@
         {
           "symbol": "KC=F",
           "label": "Coffee | Café",
-          "price": 312.0,
-          "change_pct": -6.3344358201418025,
-          "high": 319.0,
-          "low": 308.95
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "OJ=F",
           "label": "Orange Juice | Suco de Laranja",
-          "price": 143.65,
-          "change_pct": 2.9380127972634598,
-          "high": 145.0,
-          "low": 136.6
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "CT=F",
           "label": "Cotton | Algodão",
-          "price": 84.71,
-          "change_pct": 2.8533260954748796,
-          "high": 82.9,
-          "low": 81.96
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "SB=F",
           "label": "Sugar | Açúcar",
-          "price": 16.6,
-          "change_pct": -1.3079649156706865,
-          "high": 16.85,
-          "low": 16.5
+          "error": "HTTP Error 429: Too Many Requests"
         }
       ]
     },
@@ -192,58 +135,37 @@
         {
           "symbol": "DX-Y.NYB",
           "label": "DXY",
-          "price": 99.636,
-          "change_pct": -0.3241287389357221,
-          "high": 99.936,
-          "low": 99.475
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "BRL=X",
           "label": "USD/BRL",
-          "price": 5.2265,
-          "change_pct": 0.5134810075333024,
-          "high": 5.2265,
-          "low": 5.2132
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "EURUSD=X",
           "label": "EUR/USD",
-          "price": 1.1569,
-          "change_pct": 0.29165944336819283,
-          "high": 1.1575,
-          "low": 1.1567
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "GBP=X",
           "label": "USD/GBP",
-          "price": 0.7389,
-          "change_pct": -0.2645554342677073,
-          "high": 0.7389,
-          "low": 0.7384
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "JPY=X",
           "label": "USD/JPY",
-          "price": 159.283,
-          "change_pct": -0.0896935742259327,
-          "high": 159.353,
-          "low": 159.25
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "BTC-USD",
           "label": "Bitcoin | BTC/USD",
-          "price": 62879.69,
-          "change_pct": -0.2294833356121292,
-          "high": 63290.137,
-          "low": 62866.598
+          "error": "HTTP Error 429: Too Many Requests"
         },
         {
           "symbol": "ETH-USD",
           "label": "Ethereum | ETH/USD",
-          "price": 1874.85,
-          "change_pct": -0.32209571908208223,
-          "high": 1889.05,
-          "low": 1872.982
+          "error": "HTTP Error 429: Too Many Requests"
         }
       ]
     }
