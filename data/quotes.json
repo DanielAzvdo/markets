@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-07T04:15:23Z",
+  "generated_at": "2026-09-07T04:20:23Z",
   "categories": [
     {
       "name": "Indices",
@@ -49,8 +49,8 @@
           "label": "VIX",
           "price": 14.53,
           "change_pct": 1.4664826092956031,
-          "high": 14.58,
-          "low": 13.8
+          "high": null,
+          "low": null
         }
       ]
     },
@@ -192,8 +192,8 @@
         {
           "symbol": "DX-Y.NYB",
           "label": "DXY",
-          "price": 99.174,
-          "change_pct": 0.014114902555192037,
+          "price": 99.173,
+          "change_pct": 0.0131064314347065,
           "high": 99.209,
           "low": 99.077
         },
@@ -224,26 +224,26 @@
         {
           "symbol": "JPY=X",
           "label": "USD/JPY",
-          "price": 156.134,
-          "change_pct": 0.3045074693172392,
+          "price": 156.132,
+          "change_pct": 0.30322261774783893,
           "high": 156.282,
           "low": 155.795
         },
         {
           "symbol": "BTC-USD",
           "label": "Bitcoin | BTC/USD",
-          "price": 79678.89,
-          "change_pct": -0.18162135287114134,
+          "price": 79682.58,
+          "change_pct": -0.17699867530612837,
           "high": 80387.91,
-          "low": 79555.21
+          "low": 79592.39
         },
         {
           "symbol": "ETH-USD",
           "label": "Ethereum | ETH/USD",
-          "price": 2497.42,
-          "change_pct": 0.6725587493392718,
+          "price": 2498.31,
+          "change_pct": 0.7084352047560216,
           "high": 2534.0193,
-          "low": 2497.3328
+          "low": 2497.0723
         }
       ]
     }
