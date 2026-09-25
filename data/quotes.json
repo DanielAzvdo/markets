@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T16:10:22Z",
+  "generated_at": "2026-09-25T16:15:22Z",
   "categories": [
     {
       "name": "Indices",
@@ -7,48 +7,48 @@
         {
           "symbol": "^GSPC",
           "label": "S&P 500",
-          "price": 7745.35,
-          "change_pct": 0.5350392297962192,
-          "high": 7747.06,
+          "price": 7745.0,
+          "change_pct": 0.5304962118912226,
+          "high": 7749.3,
           "low": 7693.08
         },
         {
           "symbol": "^DJI",
           "label": "Dow Jones",
-          "price": 51814.38,
-          "change_pct": 0.9043811253883853,
-          "high": 51818.63,
+          "price": 51804.58,
+          "change_pct": 0.8852964053738187,
+          "high": 51838.74,
           "low": 51339.24
         },
         {
           "symbol": "^IXIC",
           "label": "Nasdaq",
-          "price": 27108.617,
-          "change_pct": 0.6282547244945312,
-          "high": 27112.656,
+          "price": 27107.953,
+          "change_pct": 0.6257899303245902,
+          "high": 27120.361,
           "low": 26876.271
         },
         {
           "symbol": "^BVSP",
           "label": "Ibovespa",
-          "price": 183540.7,
-          "change_pct": -0.23118402313470335,
+          "price": 183659.89,
+          "change_pct": -0.16639487731427874,
           "high": 184214.48,
           "low": 182151.02
         },
         {
           "symbol": "IFIX.SA",
           "label": "IFIX",
-          "price": 3732.33,
-          "change_pct": 0.2349889085235177,
-          "high": 3732.52,
+          "price": 3732.53,
+          "change_pct": 0.24036008357549116,
+          "high": 3732.62,
           "low": 3718.32
         },
         {
           "symbol": "^VIX",
           "label": "VIX",
-          "price": 15.39,
-          "change_pct": -1.7868543390598794,
+          "price": 15.14,
+          "change_pct": -3.3822595642213495,
           "high": 15.94,
           "low": 15.02
         }
@@ -60,24 +60,24 @@
         {
           "symbol": "CL=F",
           "label": "WTI | Petróleo",
-          "price": 92.82,
-          "change_pct": -1.8919782251388337,
+          "price": 91.87,
+          "change_pct": -2.896100404476444,
           "high": 94.75,
-          "low": 92.04
+          "low": 91.67
         },
         {
           "symbol": "BZ=F",
           "label": "Brent | Petróleo",
-          "price": 98.08,
-          "change_pct": -7.992493992567426,
+          "price": 97.01,
+          "change_pct": -8.996246352150951,
           "high": 100.26,
-          "low": 97.74
+          "low": 96.7
         },
         {
           "symbol": "NG=F",
           "label": "Nat Gas | Gás Natural",
-          "price": 3.202,
-          "change_pct": -2.8814053173780185,
+          "price": 3.198,
+          "change_pct": -3.0027277342207697,
           "high": 3.3,
           "low": 3.158
         }
@@ -89,32 +89,32 @@
         {
           "symbol": "GC=F",
           "label": "Gold | Ouro",
-          "price": 4325.6,
-          "change_pct": 0.6421591437878168,
+          "price": 4329.7,
+          "change_pct": 0.7375523499301958,
           "high": 4351.6,
           "low": 4289.2
         },
         {
           "symbol": "SI=F",
           "label": "Silver | Prata",
-          "price": 64.83,
-          "change_pct": 2.163668707519959,
+          "price": 65.1,
+          "change_pct": 2.5891536766859313,
           "high": 65.505,
           "low": 63.785
         },
         {
           "symbol": "PL=F",
           "label": "Platinum | Platina",
-          "price": 1797.9,
-          "change_pct": 2.7900077236988636,
-          "high": 1803.0,
+          "price": 1803.1,
+          "change_pct": 3.087303479949609,
+          "high": 1805.0,
           "low": 1758.2
         },
         {
           "symbol": "HG=F",
           "label": "Copper | Cobre",
-          "price": 6.761,
-          "change_pct": 0.6325796204834807,
+          "price": 6.775,
+          "change_pct": 0.8409594629160781,
           "high": 6.797,
           "low": 6.723
         }
@@ -126,24 +126,24 @@
         {
           "symbol": "ZC=F",
           "label": "Corn | Milho",
-          "price": 526.5,
-          "change_pct": -0.18957345971563982,
+          "price": 525.25,
+          "change_pct": -0.42654028436018954,
           "high": 527.25,
           "low": 514.75
         },
         {
           "symbol": "ZW=F",
           "label": "Wheat | Trigo",
-          "price": 700.0,
-          "change_pct": -0.9900990099009901,
+          "price": 698.75,
+          "change_pct": -1.166902404526167,
           "high": 707.0,
           "low": 683.5
         },
         {
           "symbol": "ZS=F",
           "label": "Soybean | Soja",
-          "price": 1314.0,
-          "change_pct": -0.2656546489563567,
+          "price": 1315.0,
+          "change_pct": -0.18975332068311196,
           "high": 1318.25,
           "low": 1297.5
         }
@@ -155,16 +155,16 @@
         {
           "symbol": "KC=F",
           "label": "Coffee | Café",
-          "price": 280.8,
-          "change_pct": 1.9792968133930258,
+          "price": 280.45,
+          "change_pct": 1.852185866510227,
           "high": 284.3,
           "low": 274.25
         },
         {
           "symbol": "OJ=F",
           "label": "Orange Juice | Suco de Laranja",
-          "price": 150.9,
-          "change_pct": 0.09950248756219282,
+          "price": 150.35,
+          "change_pct": -0.26533996683250793,
           "high": 153.5,
           "low": 146.9
         },
@@ -179,8 +179,8 @@
         {
           "symbol": "SB=F",
           "label": "Sugar | Açúcar",
-          "price": 18.57,
-          "change_pct": 5.631399775826864,
+          "price": 18.55,
+          "change_pct": 5.517634132557263,
           "high": 18.75,
           "low": 18.43
         }
@@ -192,56 +192,56 @@
         {
           "symbol": "DX-Y.NYB",
           "label": "DXY",
-          "price": 100.965,
-          "change_pct": -0.3208617954287322,
+          "price": 100.898,
+          "change_pct": -0.3870085023044515,
           "high": 101.305,
-          "low": 100.91
+          "low": 100.872
         },
         {
           "symbol": "BRL=X",
           "label": "USD/BRL",
-          "price": 5.1892,
-          "change_pct": 0.4821570254328463,
+          "price": 5.1901,
+          "change_pct": 0.49958436323500194,
           "high": 5.2139,
           "low": 5.1728
         },
         {
           "symbol": "EURUSD=X",
           "label": "EUR/USD",
-          "price": 1.1412,
-          "change_pct": 0.26469376266193834,
+          "price": 1.141,
+          "change_pct": 0.24712196214272153,
           "high": 1.1413,
           "low": 1.1371
         },
         {
           "symbol": "GBP=X",
           "label": "USD/GBP",
-          "price": 0.754,
-          "change_pct": -0.1589020622795898,
+          "price": 0.7542,
+          "change_pct": -0.13241901242873852,
           "high": 0.757,
           "low": 0.754
         },
         {
           "symbol": "JPY=X",
           "label": "USD/JPY",
-          "price": 157.075,
-          "change_pct": -0.7519030703173165,
+          "price": 157.127,
+          "change_pct": -0.7190467848463914,
           "high": 158.856,
           "low": 156.932
         },
         {
           "symbol": "BTC-USD",
           "label": "Bitcoin | BTC/USD",
-          "price": 83997.98,
-          "change_pct": -0.4516315881087255,
+          "price": 84022.09,
+          "change_pct": -0.42305814905208683,
           "high": 85205.35,
           "low": 83256.234
         },
         {
           "symbol": "ETH-USD",
           "label": "Ethereum | ETH/USD",
-          "price": 2692.8,
-          "change_pct": 0.20460995166158932,
+          "price": 2693.97,
+          "change_pct": 0.24814805090527833,
           "high": 2740.6748,
           "low": 2667.7402
         }
