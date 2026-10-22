@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-10-22T04:30:25Z",
+  "generated_at": "2026-10-22T04:35:19Z",
   "fed_funds": {
-    "error": "Expecting value: line 1 column 1 (char 0)"
+    "error": "HTTP Error 504: Gateway Time-out"
   },
   "unemployment": {
-    "error": "Expecting value: line 1 column 1 (char 0)"
+    "error": "The read operation timed out"
   },
   "us10y": {
-    "error": "Expecting value: line 1 column 1 (char 0)"
+    "error": "HTTP Error 504: Gateway Time-out"
   },
   "us2y": {
-    "error": "Expecting value: line 1 column 1 (char 0)"
+    "error": "The read operation timed out"
   },
   "cpi": {
-    "error": "Expecting value: line 1 column 1 (char 0)"
+    "error": "HTTP Error 504: Gateway Time-out"
   },
   "core_cpi": {
-    "error": "Expecting value: line 1 column 1 (char 0)"
+    "error": "HTTP Error 504: Gateway Time-out"
   },
   "pce": {
-    "error": "Expecting value: line 1 column 1 (char 0)"
+    "error": "HTTP Error 504: Gateway Time-out"
   }
 }
