@@ -1,10 +1,12 @@
 {
-  "generated_at": "2026-11-01T06:55:19Z",
+  "generated_at": "2026-11-01T07:00:28Z",
   "fed_funds": {
-    "error": "HTTP Error 500: Internal Server Error"
+    "value": 3.88,
+    "date": "2026-10-29"
   },
   "unemployment": {
-    "error": "HTTP Error 500: Internal Server Error"
+    "value": 4.2,
+    "date": "2026-09-01"
   },
   "us10y": {
     "error": "HTTP Error 500: Internal Server Error"
@@ -16,7 +18,10 @@
     "error": "HTTP Error 500: Internal Server Error"
   },
   "core_cpi": {
-    "error": "HTTP Error 500: Internal Server Error"
+    "level": 338.896,
+    "mom_pct": 0.3348481932704776,
+    "yoy_pct": 2.5658408440218174,
+    "date": "2026-09-01"
   },
   "pce": {
     "error": "HTTP Error 500: Internal Server Error"
