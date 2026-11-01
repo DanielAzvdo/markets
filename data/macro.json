@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-01T07:30:25Z",
+  "generated_at": "2026-11-01T07:35:20Z",
   "fed_funds": {
     "value": 3.88,
     "date": "2026-10-29"
@@ -23,12 +23,12 @@
     "date": "2026-09-01"
   },
   "core_cpi": {
-    "level": 338.896,
-    "mom_pct": 0.3348481932704776,
-    "yoy_pct": 2.5658408440218174,
-    "date": "2026-09-01"
+    "error": "HTTP Error 500: Internal Server Error"
   },
   "pce": {
-    "error": "HTTP Error 500: Internal Server Error"
+    "level": 132.257,
+    "mom_pct": 0.4908404312709539,
+    "yoy_pct": 3.648874225123632,
+    "date": "2026-09-01"
   }
 }
