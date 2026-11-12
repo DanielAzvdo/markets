@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T23:05:24Z",
+  "generated_at": "2026-11-12T23:10:23Z",
   "categories": [
     {
       "name": "Indices",
@@ -60,10 +60,10 @@
         {
           "symbol": "CL=F",
           "label": "WTI | Petróleo",
-          "price": 88.7,
-          "change_pct": 2.507802208847738,
-          "high": 89.15,
-          "low": 85.13
+          "price": 88.78,
+          "change_pct": 2.6002556944926947,
+          "high": 88.8,
+          "low": 88.78
         },
         {
           "symbol": "BZ=F",
@@ -76,10 +76,10 @@
         {
           "symbol": "NG=F",
           "label": "Nat Gas | Gás Natural",
-          "price": 3.361,
-          "change_pct": 4.541215854695039,
+          "price": 3.358,
+          "change_pct": 4.4479032550032525,
           "high": 3.377,
-          "low": 3.226
+          "low": 3.358
         }
       ]
     },
@@ -89,10 +89,10 @@
         {
           "symbol": "GC=F",
           "label": "Gold | Ouro",
-          "price": 3881.7,
-          "change_pct": -2.9696287964004546,
-          "high": 4005.9,
-          "low": 3856.8
+          "price": 3882.2,
+          "change_pct": -2.9571303587051663,
+          "high": 3883.5,
+          "low": 3881.7
         },
         {
           "symbol": "SI=F",
@@ -105,10 +105,10 @@
         {
           "symbol": "PL=F",
           "label": "Platinum | Platina",
-          "price": 1519.5,
-          "change_pct": -1.267056530214425,
-          "high": 1552.0,
-          "low": 1513.9
+          "price": 1517.7,
+          "change_pct": -1.3840155945419075,
+          "high": 1519.9,
+          "low": 1515.9
         },
         {
           "symbol": "HG=F",
@@ -137,7 +137,7 @@
           "price": 582.5,
           "change_pct": -2.835696413678065,
           "high": 603.0,
-          "low": 582.75
+          "low": 583.0
         },
         {
           "symbol": "ZS=F",
@@ -163,7 +163,10 @@
         {
           "symbol": "OJ=F",
           "label": "Orange Juice | Suco de Laranja",
-          "error": "HTTP Error 404: Not Found"
+          "price": 140.6,
+          "change_pct": -3.533447684391085,
+          "high": 145.0,
+          "low": 139.8
         },
         {
           "symbol": "CT=F",
@@ -189,8 +192,8 @@
         {
           "symbol": "DX-Y.NYB",
           "label": "DXY",
-          "price": 103.174,
-          "change_pct": 0.25653126858048386,
+          "price": 103.167,
+          "change_pct": 0.24972920877006105,
           "high": 103.242,
           "low": 102.801
         },
@@ -213,32 +216,32 @@
         {
           "symbol": "GBP=X",
           "label": "USD/GBP",
-          "price": 0.7554,
-          "change_pct": 0.8356215944580057,
-          "high": 0.7555,
+          "price": 0.7555,
+          "change_pct": 0.8489702338006648,
+          "high": 0.7556,
           "low": 0.7554
         },
         {
           "symbol": "JPY=X",
           "label": "USD/JPY",
-          "price": 159.838,
-          "change_pct": 0.7139019916659025,
-          "high": 159.859,
+          "price": 159.851,
+          "change_pct": 0.7220932898921827,
+          "high": 159.869,
           "low": 159.795
         },
         {
           "symbol": "BTC-USD",
           "label": "Bitcoin | BTC/USD",
-          "price": 71355.89,
-          "change_pct": -3.5267998190009315,
+          "price": 71426.37,
+          "change_pct": -3.431510822552896,
           "high": 74072.29,
           "low": 71261.945
         },
         {
           "symbol": "ETH-USD",
           "label": "Ethereum | ETH/USD",
-          "price": 2014.14,
-          "change_pct": -2.030094043738236,
+          "price": 2016.9,
+          "change_pct": -1.8958447162638397,
           "high": 2062.0728,
           "low": 1988.4783
         }
